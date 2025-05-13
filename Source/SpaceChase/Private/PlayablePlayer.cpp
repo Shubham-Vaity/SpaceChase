@@ -101,6 +101,15 @@ void APlayablePlayer::Tick(float DeltaTime)
     SetActorLocation(NewLocation);
 
 
+    // --- CAMERA TILT LOGIC ---
+    float TiltY = FMath::Clamp(LastInputY, -1.0f, 1.0f) * MaxTiltAngle;  // Side-to-side
+    float TiltZ = FMath::Clamp(LastInputZ, -1.0f, 1.0f) * MaxTiltAngle;  // Up/down
+
+    TargetArmRotation = FRotator(-TiltZ, 0.f, -TiltY);  // Pitch, Yaw, Roll
+    CurrentArmRotation = FMath::RInterpTo(CurrentArmRotation, TargetArmRotation, DeltaTime, CameraTiltSpeed);
+
+    SpringArm->SetRelativeRotation(CurrentArmRotation);
+
 }
 
 // Called to bind functionality to input
@@ -119,19 +128,21 @@ void APlayablePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 void APlayablePlayer::MoveForward(float Value)
 {
+    LastInputZ = Value;
 
     if (Value != 0.0f)
     {
         FVector CurrentLocation = MeshRoot->GetRelativeLocation();
         float NewZ = FMath::Clamp(CurrentLocation.Z + (Value * 10.0f), -100.0f, 300.0f);
         MeshRoot->SetRelativeLocation(FVector(CurrentLocation.X, CurrentLocation.Y, NewZ));
-        UE_LOG(LogTemp, Warning, TEXT("Manually offsetting position by Z: %f"), Value);
     }
 }
 
 void APlayablePlayer::MoveRight(float Value)
      
 {
+    LastInputY = Value;
+
     if (Controller && Value != 0.0f)
     {
         FVector CurrentLocation = MeshRoot->GetRelativeLocation();

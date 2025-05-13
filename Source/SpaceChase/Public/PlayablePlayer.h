@@ -35,8 +35,25 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+
+
+	// variables
+	// In PlayablePlayer.h
+	FRotator TargetArmRotation;
+	FRotator CurrentArmRotation;
+	float CameraTiltSpeed = 5.0f;
+	float MaxTiltAngle = 10.0f;  // How much the camera tilts
+
+	float LastInputY = 0.0f;
+	float LastInputZ = 0.0f;
+
+
+	//functions
 	void MoveForward(float Value);
 	void MoveRight(float Value);
+
+
+
 
 
 public:	
