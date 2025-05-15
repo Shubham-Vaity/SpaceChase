@@ -38,7 +38,6 @@ protected:
 
 
 	// variables
-	// In PlayablePlayer.h
 	FRotator TargetArmRotation;
 	FRotator CurrentArmRotation;
 	float CameraTiltSpeed = 5.0f;
