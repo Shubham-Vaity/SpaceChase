@@ -1,8 +1,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Kismet/GameplayStatics.h"
-#include "Floor.h"
 #include "GameFramework/GameModeBase.h"
 #include "Space_gameMode.generated.h"
 
@@ -12,17 +10,21 @@ class SPACECHASE_API ASpace_gameMode : public AGameModeBase
     GENERATED_BODY()
 
 public:
-    ASpace_gameMode(); 
+    ASpace_gameMode();
 
 protected:
     virtual void BeginPlay() override;
 
-    void GetForwardArrowLocation(AFloor* SpawnedFloor);
-
-    FRotator SpawnRotation = FRotator::ZeroRotator;
-    FVector ArrowLocation;
-
 public:
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor")
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TSubclassOf<class AFloor> FloorReff;
+
+    void GetForwardArrowLocation(class AFloor* SpawnedFloor);
+    void SpawnNextFloor();
+    AFloor* NewFloor; // optional: remove if only used locally in function
+
+private:
+    FVector ArrowLocation;
+    FRotator SpawnRotation = FRotator::ZeroRotator; // Or initialize as needed
+
 };

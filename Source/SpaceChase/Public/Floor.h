@@ -4,6 +4,7 @@
 
 #include "Components/StaticMeshComponent.h"
 #include "CoreMinimal.h"
+#include "Space_gameMode.h"
 #include "Components/SceneComponent.h"  
 #include "Components/ArrowComponent.h"
 #include "Components/BoxComponent.h"

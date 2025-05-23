@@ -39,3 +39,17 @@ void ASpace_gameMode::GetForwardArrowLocation(AFloor* SpawnedFloor)
         
     }
 }
+
+
+void ASpace_gameMode::SpawnNextFloor()
+{
+    if (!FloorReff) return;
+
+   NewFloor = GetWorld()->SpawnActor<AFloor>(FloorReff, ArrowLocation, SpawnRotation);
+
+    if (NewFloor && NewFloor->FrountArrow)
+    {
+        ArrowLocation = NewFloor->FrountArrow->GetComponentLocation(); // update ArrowLocation
+        UE_LOG(LogTemp, Warning, TEXT("New floor spawned at ArrowLocation"));
+    }
+}

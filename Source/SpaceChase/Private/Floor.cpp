@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "PlayablePlayer.h" 
 #include "Floor.h"
 
@@ -53,21 +54,18 @@ void AFloor::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
 	const FHitResult& SweepResult)
 {
-	if (OtherActor && OtherActor != this)
+	if (OtherActor && OtherActor->IsA(APlayablePlayer::StaticClass()))
 	{
-		if (OtherActor->IsA(APlayablePlayer::StaticClass()))
+		UE_LOG(LogTemp, Warning, TEXT("Player overlapped the floor!"));
+
+		ASpace_gameMode* GameMode = Cast<ASpace_gameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+		if (GameMode)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Player overlapped the floor!"));
-			
-
-				FVector SpawnLocation = FrountArrow->GetComponentLocation();
-				FRotator SpawnRotation = FRotator::ZeroRotator;
-
-				GetWorld()->SpawnActor<AFloor>(FloorToSpawn, SpawnLocation, SpawnRotation);
-				UE_LOG(LogTemp, Warning, TEXT("Floor spawned"));
-			
+			GameMode->SpawnNextFloor();
 		}
 	}
 }
+	
+	
 
 
