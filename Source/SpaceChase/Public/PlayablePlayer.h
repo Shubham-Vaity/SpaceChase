@@ -6,7 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
-
+#include "Components/ArrowComponent.h"
 #include "PlayablePlayer.generated.h"
 
 UCLASS()
@@ -30,6 +30,10 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USceneComponent* MeshRoot;
 
+	//Gun
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UArrowComponent* FirePoint;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -50,7 +54,7 @@ protected:
 	//functions
 	void MoveForward(float Value);
 	void MoveRight(float Value);
-
+	void FireAtMouse();
 
 
 

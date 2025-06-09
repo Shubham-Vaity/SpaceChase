@@ -12,6 +12,20 @@ void ASpace_gameMode::BeginPlay()
 {
     Super::BeginPlay();
 
+
+    //show cursor
+    APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+
+    if (PlayerController)
+    {
+        PlayerController->bShowMouseCursor = true;
+        PlayerController->bEnableClickEvents = true;
+        PlayerController->bEnableMouseOverEvents = true;
+    }
+
+
+
+
     ACharacter* PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
     if (PlayerCharacter && FloorReff)
     {
