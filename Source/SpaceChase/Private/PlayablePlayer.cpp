@@ -8,6 +8,10 @@
 #include "GameFramework/CharacterMovementComponent.h"  // This is the correct include for UCharacterMovementComponent
 #include "GameFramework/SpringArmComponent.h"
 #include "UObject/ConstructorHelpers.h"
+
+#include "DrawDebugHelpers.h"
+#include "Kismet/GameplayStatics.h"
+
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 
@@ -20,6 +24,10 @@ APlayablePlayer::APlayablePlayer()
     MeshRoot->SetupAttachment(RootComponent);
 
 
+    //foreSpot
+    FirePoint = CreateDefaultSubobject<UArrowComponent>(TEXT("GUN"));
+    FirePoint->SetupAttachment(MeshRoot);
+
     // Attach mesh to MeshRoot
     GetMesh()->SetupAttachment(MeshRoot);
     GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -90.f));
@@ -27,10 +35,6 @@ APlayablePlayer::APlayablePlayer()
 
     // Set this character to call Tick() every frame. You can turn this off to improve performance if you don't need it.
     PrimaryActorTick.bCanEverTick = true;
-
-
-
-
 
 
     // Create Spring Arm
@@ -46,6 +50,8 @@ APlayablePlayer::APlayablePlayer()
 
     Camera->bUsePawnControlRotation = false;
 
+
+
     // Access the Character Movement Component directly
     UCharacterMovementComponent* CharacterMovementComponent = GetCharacterMovement();  // Using GetCharacterMovement() to access the component
 
@@ -53,7 +59,7 @@ APlayablePlayer::APlayablePlayer()
     {
         CharacterMovementComponent->SetMovementMode(MOVE_Flying);
         CharacterMovementComponent->GravityScale = 0.0f;
-        CharacterMovementComponent->MaxFlySpeed = 800.0f; // Default is 600
+        CharacterMovementComponent->MaxFlySpeed = 4000.0f; // Default is 600
 
     }
 
@@ -77,6 +83,9 @@ APlayablePlayer::APlayablePlayer()
     {
         GetMesh()->SetAnimInstanceClass(AnimBP.Class);
     }
+
+  
+
 
 }
 
@@ -121,7 +130,8 @@ void APlayablePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
     PlayerInputComponent->BindAxis("MoveForward", this, &APlayablePlayer::MoveForward);
     PlayerInputComponent->BindAxis("MoveRight", this, &APlayablePlayer::MoveRight);
 
-
+    //gun
+    PlayerInputComponent->BindAction("Gun", IE_Pressed, this, &APlayablePlayer::FireAtMouse);
 
 }
 
@@ -152,3 +162,34 @@ void APlayablePlayer::MoveRight(float Value)
 }
 
 
+void APlayablePlayer::FireAtMouse()
+{
+    APlayerController* PC = Cast<APlayerController>(GetController());
+    if (!PC) return;
+
+    // Get mouse position in screen space
+    float MouseX, MouseY;
+    if (PC->GetMousePosition(MouseX, MouseY))
+    {
+        // De-project mouse position to world
+        FVector WorldLocation;
+        FVector WorldDirection;
+
+        if (PC->DeprojectScreenPositionToWorld(MouseX, MouseY, WorldLocation, WorldDirection))
+        {
+            FVector Start = FirePoint->GetComponentLocation(); // Start from arrow
+            FVector End = Start + (WorldDirection * 10000.f);  // Long line in that direction
+
+            // Do a line trace (optional)
+            FHitResult HitResult;
+            FCollisionQueryParams Params;
+            Params.AddIgnoredActor(this); // Don't hit self
+
+            bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, Params);
+
+            // Draw debug line
+            DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 2.f, 0, 5.f);
+
+        }
+    }
+}
