@@ -165,7 +165,7 @@ void APlayablePlayer::MoveRight(float Value)
 void APlayablePlayer::FireAtMouse()
 {
     APlayerController* PC = Cast<APlayerController>(GetController());
-    if (!PC) return;
+    if (!PC || !Bullet1) return;
 
     // Get mouse position in screen space
     float MouseX, MouseY;
@@ -178,7 +178,7 @@ void APlayablePlayer::FireAtMouse()
         if (PC->DeprojectScreenPositionToWorld(MouseX, MouseY, WorldLocation, WorldDirection))
         {
             FVector Start = FirePoint->GetComponentLocation(); // Start from arrow
-            FVector End = Start + (WorldDirection * 10000.f);  // Long line in that direction
+            FVector End = Start + (WorldDirection * 20000.f);  // Long line in that direction
 
             // Do a line trace (optional)
             FHitResult HitResult;
@@ -188,7 +188,25 @@ void APlayablePlayer::FireAtMouse()
             bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, Params);
 
             // Draw debug line
-            DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 2.f, 0, 5.f);
+          //  DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 2.f, 0, 5.f);
+
+            FVector TargetPoint = bHit ? HitResult.Location : End;
+
+            // Calculate direction
+            FVector Direction = (TargetPoint - Start).GetSafeNormal();
+
+            // Spawn the bullet
+            FActorSpawnParameters SpawnParams;
+            SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+            ABullet* Bullet = GetWorld()->SpawnActor<ABullet>(Bullet1, Start, Direction.Rotation(), SpawnParams);
+
+            if (Bullet)
+            {
+                Bullet->SetActorRotation(Direction.Rotation());
+                // You can also pass a velocity or target point to your bullet if needed
+            }
+
 
         }
     }

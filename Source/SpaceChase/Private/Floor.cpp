@@ -30,6 +30,23 @@ AFloor::AFloor()
 	BoxComponent->SetGenerateOverlapEvents(true);
 	BoxComponent->SetCollisionProfileName("Trigger");
 
+
+
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("/Game/StarterContent/Shapes/Shape_Plane.Shape_Plane"));
+	if (MeshAsset.Succeeded())
+	{
+		MyStaticMesh->SetStaticMesh(MeshAsset.Object);
+		MyStaticMesh->SetRelativeScale3D(FVector(20, 15, 1));
+	}
+	if (BoxComponent) {
+		BoxComponent->SetRelativeScale3D(FVector(1,25,25));
+		BoxComponent->SetRelativeLocation(FVector(1000,0,800));
+	}
+
+	if (FrountArrow) {
+		FrountArrow->SetRelativeLocation(FVector(1000, 0, 0));
+	}
+
 }
 
 // Called when the game starts or when spawned
@@ -56,13 +73,22 @@ void AFloor::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 {
 	if (OtherActor && OtherActor->IsA(APlayablePlayer::StaticClass()))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Player overlapped the floor!"));
-
+		
 		ASpace_gameMode* GameMode = Cast<ASpace_gameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 		if (GameMode)
 		{
 			GameMode->SpawnNextFloor();
 		}
+	}
+}
+
+
+void AFloor::OnBoxEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	if (OtherActor && OtherActor->IsA(APlayablePlayer::StaticClass()))
+	{
+	
+		Destroy();
 	}
 }
 	
