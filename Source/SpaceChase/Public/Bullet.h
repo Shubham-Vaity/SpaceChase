@@ -26,15 +26,15 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* MyStaticMesh;
 
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USceneComponent* DefaultSceneRoot;
 
 
-	UPROPERTY(VisibleAnywhere, Category = Movement)
+	UPROPERTY(EditAnywhere, Category = Movement)
 	UProjectileMovementComponent* ProjectileMovement;
 
 
