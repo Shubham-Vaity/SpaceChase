@@ -9,92 +9,127 @@
 // Sets default values
 AEnemyType1::AEnemyType1()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+     // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+    PrimaryActorTick.bCanEverTick = true;
 
-	DefaultSceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Default"));
-	SkeletalMesh=CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
-	ProjectileMovement=CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("P_Movement"));
-	hitBox=CreateDefaultSubobject<USphereComponent>(TEXT("HitBox"));
-	FireSpot=CreateDefaultSubobject<UArrowComponent>(TEXT("FireSpot"));
+    Tags.Add(FName("Enemy"));
 
-	
-	//Paraent Chield
-	 SetRootComponent(DefaultSceneRoot);
-	 SkeletalMesh->SetupAttachment(DefaultSceneRoot);
+    
+    DefaultSceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Default"));
+    SkeletalMesh=CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
+    ProjectileMovement=CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("P_Movement"));
+    hitBox=CreateDefaultSubobject<USphereComponent>(TEXT("HitBox"));
+    FireSpot=CreateDefaultSubobject<UArrowComponent>(TEXT("FireSpot"));
+
+
+    //Paraent Chield
+     SetRootComponent(DefaultSceneRoot);
+     SkeletalMesh->SetupAttachment(DefaultSceneRoot);
     hitBox->SetupAttachment(DefaultSceneRoot);
-	FireSpot->SetupAttachment(DefaultSceneRoot);
+    FireSpot->SetupAttachment(DefaultSceneRoot);
 
 
-	if (ProjectileMovement)
-	{
-		ProjectileMovement->InitialSpeed = 0.f;
-		ProjectileMovement->MaxSpeed = 400.f;
-		ProjectileMovement->ProjectileGravityScale = 0.f;
-		ProjectileMovement->HomingAccelerationMagnitude = 500.f;
-	}
+    if (ProjectileMovement)
+    {
+        ProjectileMovement->InitialSpeed = 0.f;
+        ProjectileMovement->MaxSpeed = 800.f;
+        ProjectileMovement->ProjectileGravityScale = 0.f;
+        ProjectileMovement->HomingAccelerationMagnitude = 1000.f;
+    }
 
-	
+
 }
 
 // Called when the game starts or when spawned
 void AEnemyType1::BeginPlay()
 {
-	Super::BeginPlay();
-	PlayerReff = Cast<ACharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-	
-	GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &AEnemyType1::GoToLocation, 3.0f, false);
+    Super::BeginPlay();
+    PlayerReff = Cast<ACharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 
-	
+    GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &AEnemyType1::GoToLocation, 1.0f, false);
+
+
 }
 
 // Called every frame
 void AEnemyType1::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+    Super::Tick(DeltaTime);
 
 }
-
 void AEnemyType1::GoToLocation()
 {
-	if (!PlayerReff || Run) return;
+    if (!PlayerReff || Run) {return;}
 
-	// Get distance
-	const FVector MyLoc = GetActorLocation();
-	const FVector PlayerLoc = PlayerReff->GetActorLocation();
-	float Dist = FVector::Dist(MyLoc, PlayerLoc);
+    // Get distance
+     float MyLoc = GetActorLocation().X;
+     float PlayerLoc = PlayerReff->GetActorLocation().X;
+    float Dist = MyLoc - PlayerLoc;
 
-	if (Dist > 1000.f) // use your desired distance check
-	{
-		ProjectileMovement->HomingTargetComponent = PlayerReff->GetRootComponent();
-		ProjectileMovement->bIsHomingProjectile = true;
+    if (Dist < 6000.f)
+    {
+        ProjectileMovement->HomingTargetComponent = PlayerReff->GetMesh();
+        ProjectileMovement->bIsHomingProjectile = true;
+        if (!Shoot)
+        {
+    ShoutPlayer();
+            Shoot=true;
+        }
 
-		// Schedule to stop homing after 3 sec (instead of using Delay in Blueprint)
-		GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &AEnemyType1::GoToLocation, 3.0f, false);
-	}
+        // Schedule to stop homing after 3 sec (instead of using Delay in Blueprint)
+    }
+    if (Dist < 400.f)
+    {
+        ProjectileMovement->bIsHomingProjectile = false;
+        Run = true;
+        
+        GetWorldTimerManager().SetTimer(death, this, &AEnemyType1::Die, 2.0f, false);
+    }
+        GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &AEnemyType1::GoToLocation, 0.01f, false);
+
 }
-
-void AEnemyType1::StopHomingNow()
+void AEnemyType1::Die()
 {
-	if (!ProjectileMovement) return;
+    if (Run==true )
+    {
+    Destroy();
+        
+    }
 
-	ProjectileMovement->bIsHomingProjectile = false;
-	Run = true;
-
-	// Lock to a socket (optional)
-	if (PlayerReff)
-	{
-		AttachToComponent(PlayerReff->GetMesh(), FAttachmentTransformRules::KeepWorldTransform, FName("SocketName")); // Replace "SocketName"
-	}
 }
+
 
 void AEnemyType1::ShoutPlayer()
 {
-	if (!PlayerReff || !FireSpot) return;
+    int RandNo = FMath::FRandRange(0.0f, 100.0f);
+    if (!PlayerReff || !FireSpot) return;
 
-	const FVector From = FireSpot->GetComponentLocation();
-	const FVector To = PlayerReff->GetActorLocation();
 
-	DrawDebugLine(GetWorld(), From, To, FColor::Red, false, 2.f, 0, 2.f);
+
+
+    if (RandNo>60 && Run ==false)
+    {
+
+    const FVector From = FireSpot->GetComponentLocation();
+    const FVector To = PlayerReff->GetMesh()->GetComponentLocation();
+    const FVector Direction = (To - From).GetSafeNormal();
+        FActorSpawnParameters SpawnParams;
+    SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+        GetWorld()->SpawnActor<AActor>(EnemyBullet, From, Direction.Rotation(), SpawnParams);
+    }
+        GetWorldTimerManager().SetTimer(StartShouting, this, &AEnemyType1::ShoutPlayer, 1.0f, false);
 }
 
+
+
+void AEnemyType1::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+    // Your logic when an overlap begins
+    if (OtherActor && OtherActor->ActorHasTag("Bullet"))
+    {
+        Die();
+        
+    }
+
+}

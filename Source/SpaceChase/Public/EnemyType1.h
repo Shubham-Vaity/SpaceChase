@@ -5,16 +5,19 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/SphereComponent.h"
-#include "Components/ArrowComponent.h"	
-#include "GameFramework/ProjectileMovementComponent.h"
+#include "Bullet.h"
+#include "Components/ArrowComponent.h"
+
 #include "EnemyType1.generated.h"
+
+class URotatingMovementComponent;
 
 UCLASS()
 class SPACECHASE_API AEnemyType1 : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 
 	AEnemyType1();
 
@@ -23,24 +26,26 @@ protected:
 	virtual void BeginPlay() override;
 
 	FTimerHandle DelayTimerHandle;
-	FTimerHandle StopHomingHandle;
+	FTimerHandle StartShouting;
+	FTimerHandle death;
 
 
-	
-public:	
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
+
 	//components
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USceneComponent* DefaultSceneRoot;
 
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UProjectileMovementComponent* ProjectileMovement;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* SkeletalMesh;	
+	UProjectileMovementComponent* ProjectileMovement;
+	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USkeletalMeshComponent* SkeletalMesh;
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -50,14 +55,19 @@ public:
 	UArrowComponent* FireSpot;
 
 
-	
+
 	//Variables
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	bool Run;
 
-	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	bool Shoot;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ACharacter*PlayerReff;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<class AActor> EnemyBullet;
 
 
 	//functions
@@ -66,8 +76,12 @@ public:
 
 	UFUNCTION()
 	void ShoutPlayer();
+	
+	void Die();
+
 
 	UFUNCTION()
-	void StopHomingNow();
+	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
 	
 };

@@ -60,6 +60,16 @@ protected:
 	void MoveRight(float Value);
 	void FireAtMouse();
 
+//GPT
+	// Movement bounds
+	float MinY = -200.f;
+	float MaxY = 200.f;
+	float MinZ = -100.f;
+	float MaxZ = 300.f;
+
+	// Input trackers
+	float InputY;
+	float InputZ;
 
 
 
@@ -70,4 +80,4 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-};
+}; 

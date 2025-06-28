@@ -40,7 +40,11 @@ ABullet::ABullet()
 void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	Tags.Add(FName("Bullet"));
+
+
+	GetWorldTimerManager().SetTimer(Death, this, &ABullet::Die, 4.0f, false);
 }
 
 // Called every frame
@@ -49,4 +53,23 @@ void ABullet::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
+void ABullet::Die()
+{
+	
+		Destroy();
+        
+	
 
+}
+
+
+void ABullet::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	// Your logic when an overlap begins
+	if (OtherActor && OtherActor->ActorHasTag("Enemy"))
+	{
+	
+        Die();
+	}
+
+}

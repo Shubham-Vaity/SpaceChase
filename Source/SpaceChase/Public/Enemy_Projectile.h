@@ -3,19 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/RotatingMovementComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "Bullet.generated.h"
+#include "Enemy_Projectile.generated.h"
 
 UCLASS()
-class SPACECHASE_API ABullet : public AActor
+class SPACECHASE_API AEnemy_Projectile : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ABullet();
+	AEnemy_Projectile();
 
 protected:
 	// Called when the game starts or when spawned
@@ -27,23 +29,23 @@ public:
 
 
 	FTimerHandle Death;
+	
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite)
+	UProjectileMovementComponent * ProjectileMovement;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UStaticMeshComponent* MyStaticMesh;
-
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USceneComponent* DefaultSceneRoot;
-
-
-	UPROPERTY(EditAnywhere, Category = Movement)
-	UProjectileMovementComponent* ProjectileMovement;
-
+	URotatingMovementComponent* RotatingMovement;
 	
-	void Die();
+	UPROPERTY( EditAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* StaticMesh;
 	
+	UPROPERTY( EditAnywhere, BlueprintReadWrite)
+	UBoxComponent* BoxCollider;
+
 	UFUNCTION()
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-
+	 void Die();
+	
 };

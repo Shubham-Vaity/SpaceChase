@@ -94,6 +94,7 @@ void APlayablePlayer::BeginPlay()
 {
     Super::BeginPlay();
 
+    Tags.Add(FName("Player"));
 
     GetCharacterMovement()->SetMovementMode(MOVE_Flying);
 

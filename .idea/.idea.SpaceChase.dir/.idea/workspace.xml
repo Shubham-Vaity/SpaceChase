@@ -8,15 +8,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65969fde-468e-4031-a6a2-929c69956152" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Enemys/enemy1/BP_SpaceOctopus.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/5/JM/JJN69WG2TEG73K47YKVLOO.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/EnemyType1.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/EnemyType1.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Enemys/Projectiles/BP_Enemy_Projectile1.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/A/MA/PMODVLY4ZI47EM8IDJ7W9H.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Enemy_Projectile.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/Enemy_Projectile.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpaceChase.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpaceChase.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/6/UU/D53URBO4YQM9RLKNTD56P7.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/B/KX/LT6KZB9ZOC2EMJLN4TJ37F.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/test/BP_Floor.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Enemys/enemy1/BP_SpaceOctopus.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Enemys/enemy1/BP_SpaceOctopus.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Enemys/projectiles/BP_Enemy_Projectile1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/JT/3NA5ZVONMLVFMG7W7MTGML.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/5/MW/T192FVWNBRQ6IZJDYCY5BX.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/7/X3/Q76LP0CBYFS8Z0GKGN4CSK.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/8/FH/O04I1H23PE4TY450YBS99N.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/4/8I/YFCA3KTF9UMLC8MLO9BQ9A.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/D/DE/SWSI13675DVYIZ0N4NF7Y3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/D/DE/SWSI13675DVYIZ0N4NF7Y3.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/Bullet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Bullet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/EnemyType1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/EnemyType1.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/PlayablePlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/PlayablePlayer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/Bullet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/Bullet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/EnemyType1.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/EnemyType1.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/PlayablePlayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/PlayablePlayer.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,21 +48,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "CppCodeGenerationId",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="SpaceChase" type="Uproject" factoryName="rider.uproject">
       <configuration_1 setup="1">
@@ -141,6 +149,8 @@
       <workItem from="1750616318541" duration="227000" />
       <workItem from="1750656310511" duration="1806000" />
       <workItem from="1750771226703" duration="5049000" />
+      <workItem from="1751027478913" duration="3921000" />
+      <workItem from="1751049218287" duration="4148000" />
     </task>
     <servers />
   </component>
@@ -168,5 +178,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
