@@ -1,6 +1,5 @@
 #include "Space_gameMode.h"
 #include "Floor.h"
-#include "PlayablePlayer.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/Character.h"
 
@@ -12,10 +11,7 @@ void ASpace_gameMode::BeginPlay()
 {
     Super::BeginPlay();
 
-
-    //show cursor
     APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-
     if (PlayerController)
     {
         PlayerController->bShowMouseCursor = true;
@@ -23,29 +19,37 @@ void ASpace_gameMode::BeginPlay()
         PlayerController->bEnableMouseOverEvents = true;
     }
 
-
-
-
     ACharacter* PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
-    if (PlayerCharacter && FloorTypes.Num() > 0)
+    if (!PlayerCharacter)
     {
-        FVector PlayerLocation = PlayerCharacter->GetActorLocation() - FVector(0.f, 0.f, 500.f);
+        UE_LOG(LogTemp, Error, TEXT("PlayerCharacter not found!"));
+        return;
+    }
 
-        int32 Index = FMath::RandRange(0, FloorTypes.Num() - 1);
-        TSubclassOf<AFloor> FloorToSpawn = FloorTypes[Index];
+    FVector PlayerLocation = PlayerCharacter->GetActorLocation() - FVector(0.f, 0.f, 500.f);
 
-        AFloor* SpawnedFloor = GetWorld()->SpawnActor<AFloor>(FloorToSpawn, PlayerLocation, SpawnRotation);
+    // Spawn the first floor
+    AFloor* SpawnedFloor = nullptr;
+    if (StarterFloorReff)
+    {
+        SpawnedFloor = GetWorld()->SpawnActor<AFloor>(StarterFloorReff, PlayerLocation, SpawnRotation);
         UpdateArrowLocation(SpawnedFloor);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("StarterFloorReff is null!"));
+        return;
+    }
 
-        for (int i = 0; i < 10; i++)
+    // Spawn 10 random floors
+    for (int i = 0; i < 10; i++)
+    {
+        TSubclassOf<AFloor> RandomFloorClass = GetRandomFloor();
+        if (RandomFloorClass)
         {
-            Index = FMath::RandRange(0, FloorTypes.Num() - 1);
-            FloorToSpawn = FloorTypes[Index];
-            SpawnedFloor = GetWorld()->SpawnActor<AFloor>(FloorToSpawn, ArrowLocation, SpawnRotation);
+            SpawnedFloor = GetWorld()->SpawnActor<AFloor>(RandomFloorClass, ArrowLocation, SpawnRotation);
             UpdateArrowLocation(SpawnedFloor);
         }
-
-        UE_LOG(LogTemp, Warning, TEXT("GameMode: Spawned initial floors."));
     }
 }
 
@@ -53,22 +57,27 @@ void ASpace_gameMode::UpdateArrowLocation(AFloor* SpawnedFloor)
 {
     if (SpawnedFloor)
     {
-        ArrowLocation = SpawnedFloor->ArrowLocation();
+        ArrowLocation = SpawnedFloor->ArrowLocation(); // AFloor must implement this
     }
 }
 
+TSubclassOf<AFloor> ASpace_gameMode::GetRandomFloor()
+{
+    if (FloorTypes.Num() == 0) return nullptr;
+
+    int32 Index = FMath::RandRange(0, FloorTypes.Num() - 1);
+    return FloorTypes[Index];
+}
 
 void ASpace_gameMode::SpawnNextFloor()
 {
-    if (FloorTypes.Num() == 0) return;
+    TSubclassOf<AFloor> RandomFloorClass = GetRandomFloor();
+    if (!RandomFloorClass) return;
 
-    int32 Index = FMath::RandRange(0, FloorTypes.Num() - 1);
-    TSubclassOf<AFloor> FloorToSpawn = FloorTypes[Index];
-
-    AFloor* NewFloor = GetWorld()->SpawnActor<AFloor>(FloorToSpawn, ArrowLocation, SpawnRotation);
+    AFloor* NewFloor = GetWorld()->SpawnActor<AFloor>(RandomFloorClass, ArrowLocation, SpawnRotation);
     if (NewFloor)
     {
         ArrowLocation = NewFloor->ArrowLocation();
-        UE_LOG(LogTemp, Warning, TEXT("New floor spawned at ArrowLocation"));
+        UE_LOG(LogTemp, Warning, TEXT("New floor spawned."));
     }
 }

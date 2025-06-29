@@ -21,9 +21,9 @@ AFloor::AFloor()
 
 	SetRootComponent(DefaultSceneRoot);	
 	MyStaticMesh->SetupAttachment(DefaultSceneRoot);
-	BoxComponent->SetupAttachment(MyStaticMesh);
-	FrountArrow->SetupAttachment(MyStaticMesh);
-
+	BoxComponent->SetupAttachment(DefaultSceneRoot);
+	FrountArrow->SetupAttachment(DefaultSceneRoot);
+S
 
 
 	//box things accoeding to chatgpt 
@@ -37,14 +37,15 @@ AFloor::AFloor()
 	{
 		MyStaticMesh->SetStaticMesh(MeshAsset.Object);
 		MyStaticMesh->SetRelativeScale3D(FVector(20, 15, 1));
+		MyStaticMesh->SetRelativeLocation(FVector(1000, 1, 0));
 	}
 	if (BoxComponent) {
 		BoxComponent->SetRelativeScale3D(FVector(1,25,25));
-		BoxComponent->SetRelativeLocation(FVector(1000,0,800));
+		BoxComponent->SetRelativeLocation(FVector(2000,0,800));
 	}
 
 	if (FrountArrow) {
-		FrountArrow->SetRelativeLocation(FVector(1000, 0, 0));
+		FrountArrow->SetRelativeLocation(FVector(2000, 1, 0));
 	}
 
 }

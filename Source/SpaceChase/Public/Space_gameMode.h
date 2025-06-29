@@ -4,6 +4,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "Space_gameMode.generated.h"
 
+class AFloor;
+
 UCLASS()
 class SPACECHASE_API ASpace_gameMode : public AGameModeBase
 {
@@ -16,18 +18,18 @@ protected:
     virtual void BeginPlay() override;
 
 public:
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    TArray<TSubclassOf<class AFloor>> FloorTypes;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Spawning")
+    TSubclassOf<AFloor> StarterFloorReff;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Spawning")
+    TArray<TSubclassOf<AFloor>> FloorTypes;
 
     void SpawnNextFloor();
-
-    
-    
+    TSubclassOf<AFloor> GetRandomFloor();
 
 private:
     FVector ArrowLocation;
-    FRotator SpawnRotation = FRotator::ZeroRotator; // Or initialize as needed
+    FRotator SpawnRotation = FRotator::ZeroRotator;
+
     void UpdateArrowLocation(AFloor* SpawnedFloor);
-
-
 };
