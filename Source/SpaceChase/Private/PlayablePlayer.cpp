@@ -99,6 +99,8 @@ void APlayablePlayer::BeginPlay()
     GetCharacterMovement()->SetMovementMode(MOVE_Flying);
 
 
+    InitialCapsuleLocation = GetActorLocation();
+    InitialMeshOffset = MeshRoot->GetRelativeLocation();
 
 }
 
@@ -141,24 +143,43 @@ void APlayablePlayer::MoveForward(float Value)
 {
     LastInputZ = Value;
 
-    if (Value != 0.0f)
+    if (Value == 0.0f) return;
+
+    // --- Move MESH (faster, more range)
+    FVector MeshOffset = MeshRoot->GetRelativeLocation();
+    float NewMeshZ = FMath::Clamp(MeshOffset.Z + (Value * MeshMoveSpeed), -MaxMeshOffsetZ, MaxMeshOffsetZ);
+    MeshRoot->SetRelativeLocation(FVector(MeshOffset.X, MeshOffset.Y, NewMeshZ));
+
+    // --- Move CAPSULE (slower, less range)
+    FVector CapsuleLocation = GetActorLocation();
+    float DeltaZ = CapsuleLocation.Z - InitialCapsuleLocation.Z;
+    if ((DeltaZ < MaxCapsuleOffsetZ && Value > 0.f) || (DeltaZ > -MaxCapsuleOffsetZ && Value < 0.f))
+
     {
-        FVector CurrentLocation = MeshRoot->GetRelativeLocation();
-        float NewZ = FMath::Clamp(CurrentLocation.Z + (Value * 10.0f), -100.0f, 300.0f);
-        MeshRoot->SetRelativeLocation(FVector(CurrentLocation.X, CurrentLocation.Y, NewZ));
+        FVector NewLocation = CapsuleLocation + FVector(0.f, 0.f, Value * CapsuleMoveSpeed);
+        SetActorLocation(NewLocation);
     }
 }
 
 void APlayablePlayer::MoveRight(float Value)
-     
 {
     LastInputY = Value;
 
-    if (Controller && Value != 0.0f)
+    if (Value == 0.0f) return;
+
+    // --- Move MESH (fast, wide)
+    FVector MeshOffset = MeshRoot->GetRelativeLocation();
+    float NewMeshY = FMath::Clamp(MeshOffset.Y + (Value * MeshMoveSpeed), -MaxMeshOffsetY, MaxMeshOffsetY);
+    MeshRoot->SetRelativeLocation(FVector(MeshOffset.X, NewMeshY, MeshOffset.Z));
+
+    // --- Move CAPSULE (slower, narrow, but direction-aware)
+    FVector CapsuleLocation = GetActorLocation();
+    float DeltaY = CapsuleLocation.Y - InitialCapsuleLocation.Y;
+
+    if ((DeltaY < MaxCapsuleOffsetY && Value > 0.f) || (DeltaY > -MaxCapsuleOffsetY && Value < 0.f))
     {
-        FVector CurrentLocation = MeshRoot->GetRelativeLocation();
-        float NewY = FMath::Clamp(CurrentLocation.Y + (Value * 10.0f), -200.0f, 200.0f);
-        MeshRoot->SetRelativeLocation(FVector(CurrentLocation.X, NewY, CurrentLocation.Z));
+        FVector NewLocation = CapsuleLocation + FVector(0.f, Value * CapsuleMoveSpeed, 0.f);
+        SetActorLocation(NewLocation);
     }
 }
 

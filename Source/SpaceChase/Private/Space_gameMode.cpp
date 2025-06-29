@@ -27,43 +27,48 @@ void ASpace_gameMode::BeginPlay()
 
 
     ACharacter* PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
-    if (PlayerCharacter && FloorReff)
+    if (PlayerCharacter && FloorTypes.Num() > 0)
     {
         FVector PlayerLocation = PlayerCharacter->GetActorLocation() - FVector(0.f, 0.f, 500.f);
-        
 
-        AFloor* SpawnedFloor = GetWorld()->SpawnActor<AFloor>(FloorReff, PlayerLocation, SpawnRotation);
-        GetForwardArrowLocation(SpawnedFloor);
+        int32 Index = FMath::RandRange(0, FloorTypes.Num() - 1);
+        TSubclassOf<AFloor> FloorToSpawn = FloorTypes[Index];
+
+        AFloor* SpawnedFloor = GetWorld()->SpawnActor<AFloor>(FloorToSpawn, PlayerLocation, SpawnRotation);
+        UpdateArrowLocation(SpawnedFloor);
 
         for (int i = 0; i < 10; i++)
         {
-            SpawnedFloor = GetWorld()->SpawnActor<AFloor>(FloorReff, ArrowLocation, SpawnRotation);
-            GetForwardArrowLocation(SpawnedFloor);
+            Index = FMath::RandRange(0, FloorTypes.Num() - 1);
+            FloorToSpawn = FloorTypes[Index];
+            SpawnedFloor = GetWorld()->SpawnActor<AFloor>(FloorToSpawn, ArrowLocation, SpawnRotation);
+            UpdateArrowLocation(SpawnedFloor);
         }
 
         UE_LOG(LogTemp, Warning, TEXT("GameMode: Spawned initial floors."));
     }
 }
 
-void ASpace_gameMode::GetForwardArrowLocation(AFloor* SpawnedFloor)
+void ASpace_gameMode::UpdateArrowLocation(AFloor* SpawnedFloor)
 {
-    if (SpawnedFloor && SpawnedFloor->FrountArrow)
+    if (SpawnedFloor)
     {
-        ArrowLocation = SpawnedFloor->FrountArrow->GetComponentLocation();
-        
+        ArrowLocation = SpawnedFloor->ArrowLocation();
     }
 }
 
 
 void ASpace_gameMode::SpawnNextFloor()
 {
-    if (!FloorReff) return;
+    if (FloorTypes.Num() == 0) return;
 
-   NewFloor = GetWorld()->SpawnActor<AFloor>(FloorReff, ArrowLocation, SpawnRotation);
+    int32 Index = FMath::RandRange(0, FloorTypes.Num() - 1);
+    TSubclassOf<AFloor> FloorToSpawn = FloorTypes[Index];
 
-    if (NewFloor && NewFloor->FrountArrow)
+    AFloor* NewFloor = GetWorld()->SpawnActor<AFloor>(FloorToSpawn, ArrowLocation, SpawnRotation);
+    if (NewFloor)
     {
-        ArrowLocation = NewFloor->FrountArrow->GetComponentLocation(); // update ArrowLocation
+        ArrowLocation = NewFloor->ArrowLocation();
         UE_LOG(LogTemp, Warning, TEXT("New floor spawned at ArrowLocation"));
     }
 }

@@ -8,23 +8,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65969fde-468e-4031-a6a2-929c69956152" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Enemys/Projectiles/BP_Enemy_Projectile1.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/A/MA/PMODVLY4ZI47EM8IDJ7W9H.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Enemy_Projectile.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/Enemy_Projectile.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/8/KG/8INAXMPOY5AR19HCQECBYU.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/9/P1/QLYWZK2Y0IZ4CB5XGKTBVP.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/test/FloorBioms/Biom1/MBP_Floor_Child1.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/test/FloorBioms/Biom1/MBP_Floor_Child2.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/test/FloorBioms/Biom1/MBP_Floor_Child3.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpaceChase.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpaceChase.dir/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Enemys/enemy1/BP_SpaceOctopus.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Enemys/enemy1/BP_SpaceOctopus.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Enemys/projectiles/BP_Enemy_Projectile1.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/JT/3NA5ZVONMLVFMG7W7MTGML.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/5/MW/T192FVWNBRQ6IZJDYCY5BX.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/7/X3/Q76LP0CBYFS8Z0GKGN4CSK.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/8/FH/O04I1H23PE4TY450YBS99N.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/4/8I/YFCA3KTF9UMLC8MLO9BQ9A.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/D/DE/SWSI13675DVYIZ0N4NF7Y3.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/D/DE/SWSI13675DVYIZ0N4NF7Y3.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/Bullet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Bullet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/EnemyType1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/EnemyType1.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Enemys/enemy1/Enemy1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Enemys/enemy1/Enemy1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Enemys/enemy1/Enemy1Bullet.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Enemys/enemy1/model/scene_Skeleton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Enemys/enemy1/model/scene_Skeleton.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/0/L7/SDT91WZMR9XUEYQOAPFGXU.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/OG/KDQDMXAXZXD8VLDDU4K3JL.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/OG/KDQDMXAXZXD8VLDDU4K3JL.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/9/JV/KBLR0KWO93MHY14HGA6CSB.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/6/FL/X75GZRMXZC4DQBCVB2XTY8.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/E/I3/UDUH4CZLXLK2CGNVXNCTB0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/test/BP_PlayablePlayer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/test/BP_PlayablePlayer.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/test/BP_Space_gameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/test/BP_Space_gameMode.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/test/MBP_Floor.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/test/MBP_Floor.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/Enemy_Projectile.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Enemy_Projectile.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/Floor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Floor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/PlayablePlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/PlayablePlayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/Bullet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/Bullet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/Space_gameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Space_gameMode.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/EnemyType1.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/EnemyType1.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/Enemy_Projectile.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/Enemy_Projectile.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/Floor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/Floor.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/PlayablePlayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/PlayablePlayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/Space_gameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/Space_gameMode.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +46,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Classes/GameFramework/Actor.h" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -48,21 +58,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CppCodeGenerationId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CppCodeGenerationId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="SpaceChase" type="Uproject" factoryName="rider.uproject">
       <configuration_1 setup="1">
@@ -151,12 +161,15 @@
       <workItem from="1750771226703" duration="5049000" />
       <workItem from="1751027478913" duration="3921000" />
       <workItem from="1751049218287" duration="4148000" />
+      <workItem from="1751132563196" duration="4854000" />
+      <workItem from="1751206643882" duration="3120000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

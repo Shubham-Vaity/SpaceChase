@@ -60,18 +60,30 @@ protected:
 	void MoveRight(float Value);
 	void FireAtMouse();
 
-//GPT
-	// Movement bounds
-	float MinY = -200.f;
-	float MaxY = 200.f;
-	float MinZ = -100.f;
-	float MaxZ = 300.f;
+//gpt
 
-	// Input trackers
-	float InputY;
-	float InputZ;
+	FVector InitialCapsuleLocation;
+	FVector InitialMeshOffset;
 
+	UPROPERTY(EditAnywhere, Category="Movement Limits")
+	float MaxMeshOffsetY = 250.f;
 
+	UPROPERTY(EditAnywhere, Category="Movement Limits")
+	float MaxMeshOffsetZ = 250.f;
+
+	UPROPERTY(EditAnywhere, Category="Movement Limits")
+	float MaxCapsuleOffsetY = 300.f;
+
+	UPROPERTY(EditAnywhere, Category="Movement Limits")
+	float MaxCapsuleOffsetZ = 300.f;
+
+	UPROPERTY(EditAnywhere, Category="Movement Speed")
+	float MeshMoveSpeed = 8.f;
+
+	UPROPERTY(EditAnywhere, Category="Movement Speed")
+	float CapsuleMoveSpeed = 6.f;
+
+	
 
 public:	
 	// Called every frame

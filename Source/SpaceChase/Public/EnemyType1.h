@@ -76,6 +76,8 @@ public:
 
 	UFUNCTION()
 	void ShoutPlayer();
+
+
 	
 	void Die();
 

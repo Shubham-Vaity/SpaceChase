@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "GameFramework/Character.h"
+
+#include "Kismet/GameplayStatics.h"
 
 #include "Enemy_Projectile.h"
-
-
 
 // Sets default values
 AEnemy_Projectile::AEnemy_Projectile()
@@ -30,11 +31,14 @@ AEnemy_Projectile::AEnemy_Projectile()
 	{
 		ProjectileMovement->InitialSpeed=1000.0f;
 		ProjectileMovement->MaxSpeed=1000.0f;
-		ProjectileMovement->bRotationFollowsVelocity = true;
-		ProjectileMovement->bShouldBounce = false;
 		ProjectileMovement->ProjectileGravityScale = 0;
 		ProjectileMovement->bRotationFollowsVelocity = false;	
+		ProjectileMovement->HomingAccelerationMagnitude = 4000.f;
 	}
+
+
+
+	
 	if (BoxCollider)
 	{
 		BoxCollider->SetHiddenInGame(true,true);
@@ -47,7 +51,8 @@ void AEnemy_Projectile::BeginPlay()
 {
 	Super::BeginPlay();
 	Tags.Add(FName("Enemy"));
-	GetWorldTimerManager().SetTimer(Death, this, &AEnemy_Projectile::Die, 4.0f, false);
+	PlayerReff = Cast<ACharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+	home();
 }
 
 // Called every frame
@@ -56,6 +61,28 @@ void AEnemy_Projectile::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
+
+void AEnemy_Projectile::home()
+{
+	if (!PlayerReff ) {return;}
+
+	float MyLoc = GetActorLocation().X;
+	float PlayerLoc = PlayerReff->GetActorLocation().X;
+	float Dist = MyLoc - PlayerLoc;
+
+	ProjectileMovement->HomingTargetComponent = PlayerReff->GetMesh();
+	ProjectileMovement->bIsHomingProjectile = true;
+
+
+	if (Dist < 400.f)
+	{
+		GetWorldTimerManager().SetTimer(Death, this, &AEnemy_Projectile::Die, 4.0f, false);	
+		ProjectileMovement->bIsHomingProjectile = false;
+        
+	}
+	GetWorldTimerManager().SetTimer(homing, this, &AEnemy_Projectile::home, 0.1f, false);
+}
+
 
 void AEnemy_Projectile::Die()
 {

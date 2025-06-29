@@ -21,8 +21,8 @@ AFloor::AFloor()
 
 	SetRootComponent(DefaultSceneRoot);	
 	MyStaticMesh->SetupAttachment(DefaultSceneRoot);
-	BoxComponent->SetupAttachment(DefaultSceneRoot);
-	FrountArrow->SetupAttachment(DefaultSceneRoot);
+	BoxComponent->SetupAttachment(MyStaticMesh);
+	FrountArrow->SetupAttachment(MyStaticMesh);
 
 
 
@@ -90,6 +90,12 @@ void AFloor::OnBoxEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* O
 	
 		Destroy();
 	}
+}
+
+FVector AFloor::ArrowLocation()
+{
+
+	return FrountArrow->GetComponentLocation();
 }
 	
 	

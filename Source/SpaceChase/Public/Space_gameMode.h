@@ -17,14 +17,17 @@ protected:
 
 public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    TSubclassOf<class AFloor> FloorReff;
+    TArray<TSubclassOf<class AFloor>> FloorTypes;
 
-    void GetForwardArrowLocation(class AFloor* SpawnedFloor);
     void SpawnNextFloor();
-    AFloor* NewFloor; // optional: remove if only used locally in function
+
+    
+    
 
 private:
     FVector ArrowLocation;
     FRotator SpawnRotation = FRotator::ZeroRotator; // Or initialize as needed
+    void UpdateArrowLocation(AFloor* SpawnedFloor);
+
 
 };
