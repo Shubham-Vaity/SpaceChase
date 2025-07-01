@@ -38,7 +38,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<class ABullet> Bullet1;
 
+	//enemyPoint
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UArrowComponent* EnemType3;
 
+
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

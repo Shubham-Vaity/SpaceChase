@@ -19,40 +19,33 @@
 // Sets default values
 APlayablePlayer::APlayablePlayer()
 {
-
+//meshroot
     MeshRoot = CreateDefaultSubobject<USceneComponent>(TEXT("MeshRoot"));
-    MeshRoot->SetupAttachment(RootComponent);
-
-
-    //foreSpot
+    //gun
     FirePoint = CreateDefaultSubobject<UArrowComponent>(TEXT("GUN"));
-    FirePoint->SetupAttachment(MeshRoot);
-
-    // Attach mesh to MeshRoot
-    GetMesh()->SetupAttachment(MeshRoot);
+   EnemType3 = CreateDefaultSubobject<UArrowComponent>(TEXT("EnemType3"));
+    
     GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -90.f));
-
-
-    // Set this character to call Tick() every frame. You can turn this off to improve performance if you don't need it.
+   
     PrimaryActorTick.bCanEverTick = true;
-
-
-    // Create Spring Arm
+     //SpringArm
     SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
-    SpringArm->SetupAttachment(RootComponent);
     SpringArm->TargetArmLength = 300.f;
-
     SpringArm->bUsePawnControlRotation = false;
-
-    // Create Camera
+    //Camera
     Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-    Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
-
     Camera->bUsePawnControlRotation = false;
 
 
+    GetMesh()->SetupAttachment(MeshRoot);
+    EnemType3->SetupAttachment(SpringArm);
+    MeshRoot->SetupAttachment(RootComponent);
+    SpringArm->SetupAttachment(RootComponent);
+    FirePoint->SetupAttachment(MeshRoot);
+    Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 
-    // Access the Character Movement Component directly
+
+  
     UCharacterMovementComponent* CharacterMovementComponent = GetCharacterMovement();  // Using GetCharacterMovement() to access the component
 
     if (CharacterMovementComponent)

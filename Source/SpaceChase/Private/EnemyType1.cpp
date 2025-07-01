@@ -107,7 +107,7 @@ void AEnemyType1::ShoutPlayer()
 
 
 
-    if (RandNo>60 && Run ==false)
+    if (RandNo>60 && Run ==false)   
     {
 
     const FVector From = FireSpot->GetComponentLocation();
