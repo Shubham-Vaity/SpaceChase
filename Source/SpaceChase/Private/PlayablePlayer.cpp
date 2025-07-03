@@ -19,6 +19,7 @@
 // Sets default values
 APlayablePlayer::APlayablePlayer()
 {
+    Tags.Add(FName("Player"));
 //meshroot
     MeshRoot = CreateDefaultSubobject<USceneComponent>(TEXT("MeshRoot"));
     //gun
@@ -45,6 +46,7 @@ APlayablePlayer::APlayablePlayer()
     Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 
 
+    
   
     UCharacterMovementComponent* CharacterMovementComponent = GetCharacterMovement();  // Using GetCharacterMovement() to access the component
 
@@ -87,7 +89,7 @@ void APlayablePlayer::BeginPlay()
 {
     Super::BeginPlay();
 
-    Tags.Add(FName("Player"));
+    
 
     GetCharacterMovement()->SetMovementMode(MOVE_Flying);
 

@@ -26,6 +26,13 @@ AEnemy_Projectile::AEnemy_Projectile()
 	*/
 	BoxCollider->SetupAttachment(StaticMesh);
 
+	
+	if (StaticMesh)
+	{
+    
+		StaticMesh->CastShadow = false;
+	}
+
 
 	if (ProjectileMovement)
 	{
@@ -93,19 +100,3 @@ void AEnemy_Projectile::Die()
 
 }
 
-void AEnemy_Projectile::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	// Your logic when an overlap begins
-	if (OtherActor && OtherActor->ActorHasTag("Bullet"))
-	{
-		Die();
-        
-	}
-
-	if (OtherActor && OtherActor->ActorHasTag("Player"))
-	{
-		Die();
-        
-	}
-
-}

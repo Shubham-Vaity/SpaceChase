@@ -25,13 +25,15 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	FTimerHandle DelayTimerHandle;
 	
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	//components
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* MyStaticMesh;
 
@@ -50,6 +52,13 @@ public:
 
 
 	//functions
+
+	UFUNCTION()
+	void spawnEnemyAtArrows();
+
+	UFUNCTION()
+	FVector ArrowLocation();
+	
 	UFUNCTION()
 	void OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
@@ -61,7 +70,10 @@ public:
 
 
 
-	FVector ArrowLocation();
+	//enemy spawner
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "enemy spawner")
+	TArray<UArrowComponent*> SpawnArrows;
 
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TSubclassOf<AActor>> EnemyRefs;
 };

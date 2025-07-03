@@ -9,8 +9,14 @@ ABullet::ABullet()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	
+	Tags.Add(FName("Bullet"));
+
+	
+
 	DefaultSceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Default"));
-	MyStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Floor"));
+	MyStaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
 
 	SetRootComponent(DefaultSceneRoot);
@@ -18,6 +24,8 @@ ABullet::ABullet()
 
 	if (MyStaticMesh) {
 
+		MyStaticMesh->CastShadow = false;
+		
 	}
 
 
@@ -27,8 +35,8 @@ ABullet::ABullet()
 	{
 		// ... other constructor code ...
 	
-		ProjectileMovement->InitialSpeed = 90000.f;
-		ProjectileMovement->MaxSpeed = 90000.f;
+		ProjectileMovement->InitialSpeed = 5000.f;
+		ProjectileMovement->MaxSpeed = 5000.f;
 		ProjectileMovement->bRotationFollowsVelocity = true;
 		ProjectileMovement->bShouldBounce = false;
 		ProjectileMovement->ProjectileGravityScale = 0;
@@ -41,7 +49,7 @@ void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Tags.Add(FName("Bullet"));
+
 
 
 	GetWorldTimerManager().SetTimer(Death, this, &ABullet::Die, 4.0f, false);

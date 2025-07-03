@@ -56,6 +56,8 @@ void AFloor::BeginPlay()
 	Super::BeginPlay();
 
 	BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AFloor::OnBoxOverlap);
+
+	GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &AFloor::spawnEnemyAtArrows, 0.5f, false);
 	
 }
 
@@ -63,8 +65,42 @@ void AFloor::BeginPlay()
 void AFloor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
+
+
+
+FVector AFloor::ArrowLocation()
+{
+
+	return FrountArrow->GetComponentLocation();
+}
+void AFloor::spawnEnemyAtArrows()
+{
+	if (SpawnArrows.Num() > 0 && EnemyRefs.Num() > 0)
+	{
+		
+		int randomIndex = FMath::RandRange(0, EnemyRefs.Num() - 1);
+		TSubclassOf<AActor> SelectedEnemyClass = EnemyRefs[randomIndex];
+
+		for (int i = 0; i < SpawnArrows.Num(); i++)
+		{
+			FVector SpawnLocation = SpawnArrows[i]->GetComponentLocation();
+			FRotator SpawnRotation = SpawnArrows[i]->GetComponentRotation();
+
+			GetWorld()->SpawnActor<AActor>(
+				SelectedEnemyClass,
+				SpawnLocation,
+				SpawnRotation
+			);
+		}
+	}
+}
+
+
+	
+
+
+
 
 //box collider 
 
@@ -93,12 +129,6 @@ void AFloor::OnBoxEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* O
 	}
 }
 
-FVector AFloor::ArrowLocation()
-{
-
-	return FrountArrow->GetComponentLocation();
-}
-	
 	
 
 

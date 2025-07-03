@@ -28,7 +28,13 @@ AEnemyType1::AEnemyType1()
     hitBox->SetupAttachment(DefaultSceneRoot);
     FireSpot->SetupAttachment(DefaultSceneRoot);
 
+if (SkeletalMesh)
+{
+    
+    SkeletalMesh->CastShadow = false;
+}
 
+    
     if (ProjectileMovement)
     {
         ProjectileMovement->InitialSpeed = 0.f;
@@ -122,14 +128,3 @@ void AEnemyType1::ShoutPlayer()
 }
 
 
-
-void AEnemyType1::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-    // Your logic when an overlap begins
-    if (OtherActor && OtherActor->ActorHasTag("Bullet"))
-    {
-        Die();
-        
-    }
-
-}
