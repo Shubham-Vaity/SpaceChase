@@ -7,125 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65969fde-468e-4031-a6a2-929c69956152" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Rockes/1/Asteroids_Mat.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Rockes/1/Asteroids_Mat_baseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Rockes/1/scene.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Rockes/2/Scene_-_Root.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Rockes/2/Scene_-_Root_baseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Rockes/2/Scene_-_Root_normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Rockes/2/scene.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/1/07_-_Default.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/1/0cfd1cf06b5e4d8a95fe609caa6eb55f_Textured.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/1/7159e103222d4aed9c83d73c282dcd0d_R_Debris_MetallicSmoothness.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/1/7758ffea93b043818b8c5e556fffbd8b_RGB_Debris_Albedo.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/1/8c0e53c857464080b579354580ae1af1_N_Debris_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/2/07_-_Default.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/2/3e579a31166c45c8bd7b8243465c60a8_RGB_Debris_Albedo.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/2/a76bc355b8f14bab8af58dad303f4f29_Textured.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/2/a79c5a6573ce4c87935b8299ecd4e951_R_Debris_MetallicSmoothness.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/2/b5abf1b17e544359a4257a5639ad6d19_N_Debris_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/00d6f434300540edbbd8c6c8e802bbc2_R_bigengine_roughness.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/03636bd998b945b986156fc62f83308b_RGB_scrapdevice_DefaultMaterial_BaseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/1_Material__25_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/250b6b88498c4cfc91ce6fceccbf9c55_R_scrapjet_roughness.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/2_Material__2_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/336bbd55e99b4293988807a278d4882c_R_scrapdevice_metallic.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/359add7871f441d5909592031591ee14_RGB_bigengine_low_DefaultMaterial_BaseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/3_Material__2_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/3abb56ef08614b34bffddf9d526e7b3c_N_scrapjet_low_DefaultMaterial_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/40206bfe4a364c6c9cbf6cdd0f1f4159_R_scrapblock_ao.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/4_Material__2_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/4c3771d8a86a4516a3d0b81715078123_R_bigengine_ao.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/4e247d6f8d6242f297ff8077bf0b01d5_RGB_scrapjet_low_DefaultMaterial_BaseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/519ea11f160a46e99cf2686ca0f19b74_RGB_scrapelectriclow_DefaultMaterial_BaseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/5_Material__2_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/6dec25870e2042c98c2610e8ec17e7e4_R_bigengine_metallic.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/70de65595c1e4233a7f2c6b272c5277d_N_scrapblock_low_DefaultMaterial_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/72ba655755324bdf90d446410df94be0_N_bigengine_low_DefaultMaterial_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/8230871509774237886c353f9168cb10_R_scrapjet_ao.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/87ae8e09a2a14c429f0d4ac9dcda7e20_N_scrapdevice_DefaultMaterial_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/8c57343d15de4cf6a637e440c1242274_R_scrapelectric_ao.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/8d468efbee33447bba0a5d783df89729_R_scrapjet_metallic.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/9c5622d7ad7b4683977fa4b38d410734_R_scrapblock_roughness.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/Material__2.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/Material__25.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/Material__2_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/Material__2_1.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/Material__2_2.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/bbf599fd57794102bce2e01ebda2b3f6_R_scrapelectric_metallic.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/be2b72da10d1460697abb362aba753ee_N_scrapelectriclow_DefaultMaterial_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/c2ed4e04c4394b76bb4798469366729b_R_scrapdevice_ao.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/cc92708c0b194fc9a6bb7d4c70a43e62_RGB_scrapblock_low_DefaultMaterial_BaseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/cdda60605b8d40afa8c01e693198fa31_R_scrapelectric_roughness.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/d0b22105e8bc42ea8a3169c6a8ebbf2e_R_scrapdevice_roughness.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/Trash/3/d63516107b304096aa56da589f8ca5c2_R_scrapblock_metallic.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/Material_50.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/Material_50_baseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/Material_62.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/Material_62_baseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/Material_63.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/Material_63_baseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/Material_64.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/scene.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/scene_Anim.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/scene_PhysicsAsset.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/1/scene_Skeleton.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/Clouds_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/Clouds_0_baseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/Clouds_0_normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/Clouds_1.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/Clouds_1_baseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/Clouds_1_normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/PurplePlanet.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/PurplePlanet_baseColor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/PurplePlanet_metallicRoughness.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/PurplePlanet_normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/scene.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/scene_Anim.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/scene_PhysicsAsset.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/2/scene_Skeleton.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/3/0d2b4e46f214402e87abc0ee18eb586b_R_greenlakes_1_AO.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/3/4426423245d74a03bc2d4c6fe8548e5d_N_greenlakes_1_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/3/46caa66bfe5e4f6c8c19249b3e11f600_R_greenlakes_1_Roughness.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/3/90e4b01b134e4f5eb495d797fc3cdd8d_RGB_greenlakes_1_Albedo.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/3/c8c418a3260749a5a2815f154f329b98_Textured.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/planates/3/lambert1.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/1/0a3196ee822d474cadeba5a5252ca703_Textured.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/1/11c6de8d426d4358830512c1c3e8031e_RGB_Object001_2014-11-05_21-00-31_complete_rpf_converted.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/1/Object001_mtl.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/1cf503b24a9c40cf94386bebe8d94f94_N_SmallTurret_phong1_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/42bc520526634eeba53d10e1a8e86f90_RGB_SpeedRing_phong1_AlbedoTransparency.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/5db12d44258a44a18e3714dc9143b79e_RGB_SpeedRing_phong1_Emission.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/76fb5db7b9f3400197be085aaba053d8_RGB_SmallTurret_phong1_Emission.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/7f56d02557de4553bb6bb1498f6a3b7f_RGB_RocketLauncher_phong1_AlbedoTransparency.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/9c5344d0e8354862820153735cf85743_RGB_SmallTurret_phong1_AlbedoTransparency.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/Blue_Frigate.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/Large_Frigate_Blue_Frigate_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/M_Rocket_Launcher.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/M_Small_Turret.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/M_Speed_Ring.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/SM_Rocket_Launcher__1__M_Rocket_Launcher_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/SM_Small_Turret_M_Small_Turret_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/SM_Small_Turret__2__M_Small_Turret_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/SM_Small_Turret__4__M_Small_Turret_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/SM_Small_Turret__7__M_Small_Turret_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/SM_Speed_Ring_M_Speed_Ring_0.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/b063d3717c154ed6b1b56dca080e1c84_RGB_Frigate_phong1_AlbedoTransparency.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/b20d9e8d91734cb997859530f7e00b66_N_Frigate_phong1_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/b943e0bb57cd48b788804d1e69ad6841_RGB_Frigate_phong1_Emission.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/d955ba05c351468f9557e82daebf3e71_N_SpeedRing_phong1_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/e19929edacb84767b388ca857dce8493_N_RocketLauncher_phong1_Normal.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Environment/sateLight_and_others/2/f7b972f579e0498b9b45aa21c2d44918_RGB_RocketLauncher_phong1_Emission.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SpaceChase.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpaceChase.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Enemys/enemy1/EnemySpawner1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Enemys/enemy1/EnemySpawner1.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Enemys/enemy1/Squidspawner.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Enemys/enemy3/EnemySpawner.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Enemys/enemy3/EnemySpawner.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Enemys/enemy3/Fishspawner.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Ship/Object_4_Skeleton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Ship/Object_4_Skeleton.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/test/BP_PlayablePlayer.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/test/BP_PlayablePlayer.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/test/FloorBioms/Biom1/BP_Floor_RockyBiom.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/test/FloorBioms/Biom1/BP_Floor_RockyBiom.uasset" afterDir="false" />
-    </list>
+    <list default="true" id="65969fde-468e-4031-a6a2-929c69956152" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -287,6 +169,7 @@
       <workItem from="1751607219880" duration="1688000" />
       <workItem from="1751619659565" duration="1990000" />
       <workItem from="1751627375778" duration="893000" />
+      <workItem from="1751696960862" duration="758000" />
     </task>
     <servers />
   </component>
