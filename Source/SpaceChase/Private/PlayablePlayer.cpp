@@ -90,6 +90,12 @@ void APlayablePlayer::BeginPlay()
     Super::BeginPlay();
 
     
+ 
+
+    
+    GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &APlayablePlayer::UpdateStamina, StaminaTickRate, true);
+ 
+	
 
     GetCharacterMovement()->SetMovementMode(MOVE_Flying);
 
@@ -104,7 +110,7 @@ void APlayablePlayer::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
     FVector NewLocation = GetActorLocation();
-    NewLocation.X += 300.f * DeltaTime; // Adjust speed as needed
+    NewLocation.X +=Speed * DeltaTime; // Adjust speed as needed
     SetActorLocation(NewLocation);
 
 
@@ -128,6 +134,10 @@ void APlayablePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
     PlayerInputComponent->BindAxis("MoveForward", this, &APlayablePlayer::MoveForward);
     PlayerInputComponent->BindAxis("MoveRight", this, &APlayablePlayer::MoveRight);
 
+//boost or sprint
+    PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &APlayablePlayer::StartSprint);
+    PlayerInputComponent->BindAction("Sprint", IE_Released, this, &APlayablePlayer::StopSprint);
+    
     //gun
     PlayerInputComponent->BindAction("Gun", IE_Pressed, this, &APlayablePlayer::FireAtMouse);
 
@@ -179,6 +189,49 @@ void APlayablePlayer::MoveRight(float Value)
 }
 
 
+//boost
+void APlayablePlayer::StartSprint()
+{
+    if (Stamina > 0.f)
+    {
+        bIsSprinting = true;
+        SprintTimer = 0.f;
+        Speed = SprintSpeed;
+    }
+}
+
+void APlayablePlayer::StopSprint()
+{
+    bIsSprinting = false;
+    Speed = NormalSpeed;
+}
+void APlayablePlayer::UpdateStamina()
+{
+    float DeltaTime = StaminaTickRate;
+
+    if (bIsSprinting)
+    {
+        SprintTimer += DeltaTime;
+        Stamina -= StaminaDrainRate * DeltaTime;
+
+        if (Stamina <= 0.f || SprintTimer >= MaxSprintTime)
+        {
+            Stamina = FMath::Clamp(Stamina, 0.f, MaxStamina);
+            StopSprint();
+        }
+    }
+    else
+    {
+        if (Stamina < MaxStamina)
+        {
+            Stamina += StaminaRecoveryRate * DeltaTime;
+            Stamina = FMath::Clamp(Stamina, 0.f, MaxStamina);
+        }
+    }
+}
+
+
+//gun
 void APlayablePlayer::FireAtMouse()
 {
     APlayerController* PC = Cast<APlayerController>(GetController());
@@ -227,4 +280,9 @@ void APlayablePlayer::FireAtMouse()
 
         }
     }
+}
+
+void APlayablePlayer::increaseTimer()
+{
+   Speed = 1500.0f;
 }

@@ -50,7 +50,20 @@ if (SkeletalMesh)
 void AEnemyType1::BeginPlay()
 {
     Super::BeginPlay();
+
+
+    
     PlayerReff = Cast<ACharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+
+
+    
+    FVector RandomDirection = FMath::VRand();
+    float Distance = FMath::FRandRange(250.0f, 550.f); 
+    FVector Offset = RandomDirection * Distance;
+    FVector NewLocation = GetActorLocation() + Offset;
+    SetActorLocation(NewLocation);
+
+
 
     GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &AEnemyType1::GoToLocation, 1.0f, false);
 

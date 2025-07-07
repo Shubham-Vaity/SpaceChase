@@ -13,7 +13,8 @@ AEnemyType2::AEnemyType2()
 
 	Tags.Add(FName("Enemy"));
 
-    
+
+	
 	DefaultSceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Default"));
 	SkeletalMesh=CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 	ProjectileMovement=CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("P_Movement"));
@@ -39,7 +40,7 @@ AEnemyType2::AEnemyType2()
 	if (ProjectileMovement)
 	{
 		ProjectileMovement->InitialSpeed = 0.f;
-		ProjectileMovement->MaxSpeed = 400.f;
+		ProjectileMovement->MaxSpeed = 800.f;
 		ProjectileMovement->ProjectileGravityScale = 0.f;
 		ProjectileMovement->HomingAccelerationMagnitude = 1000.f;
 	}
@@ -52,6 +53,16 @@ void AEnemyType2::BeginPlay()
 	Super::BeginPlay();
 	PlayerReff = Cast<ACharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 
+
+	FVector RandomDirection = FMath::VRand();
+	float Distance = FMath::FRandRange(250.0f, 550.f); 
+	FVector Offset = RandomDirection * Distance;
+	FVector NewLocation = GetActorLocation() + Offset;
+	SetActorLocation(NewLocation);
+
+
+
+	
 	GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &AEnemyType2::GoToLocation, 1.0f, false);
 
 }
@@ -104,8 +115,8 @@ void AEnemyType2::GoToLocation()
 
 
     	// Move straight in X for a few seconds
-    	FVector Direction = FVector(1.f, 0.f, 0.f); // forward X
-    	ProjectileMovement->Velocity = Direction * 400.f; // example speed
+    	FVector Direction = FVector(1.f, 0.f, 0.f); 
+    	ProjectileMovement->Velocity = Direction * 800.f;
 
     	// After delay, move down
     	GetWorldTimerManager().SetTimer(death, this, &AEnemyType2::Die, 6.0f, false);

@@ -20,26 +20,26 @@ public:
 	APlayablePlayer();
 
 	/** Components */
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Camera")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Camera")
 	class USpringArmComponent* SpringArm;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Camera")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Camera")
 	class UCameraComponent* Camera;
 
 
 	// The new root for the mesh (so we can move the mesh only)
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USceneComponent* MeshRoot;
 
 	//Gun
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UArrowComponent* FirePoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<class ABullet> Bullet1;
 
 	//enemyPoint
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UArrowComponent* EnemType3;
 
 
@@ -50,7 +50,8 @@ protected:
 	//test
 
 
-	// variables
+	
+	// variabless
 	FRotator TargetArmRotation;
 	FRotator CurrentArmRotation;
 	float CameraTiltSpeed = 5.0f;
@@ -59,11 +60,14 @@ protected:
 	float LastInputY = 0.0f;
 	float LastInputZ = 0.0f;
 
+	float Speed=500.0f;
+
 
 	//functions
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 	void FireAtMouse();
+	void increaseTimer();
 
 //gpt
 
@@ -88,6 +92,26 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Movement Speed")
 	float CapsuleMoveSpeed = 6.f;
 
+	// --- Sprinting ---
+	bool bIsSprinting;
+	float SprintSpeed = 1500.f;
+	float NormalSpeed = 500.f;
+
+	float Stamina = 100.f;
+	float MaxStamina = 100.f;
+	float StaminaDrainRate = 20.f;  // per second
+	float StaminaRecoveryRate = 10.f; // per second
+
+	float SprintTimer = 0.f;
+	float MaxSprintTime = 5.f;
+
+	void StartSprint();
+	void StopSprint();
+	float StaminaTickRate = 0.1f;
+	UFUNCTION()
+	void UpdateStamina();
+
+	FTimerHandle DelayTimerHandle;
 	
 
 public:	

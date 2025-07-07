@@ -56,6 +56,7 @@ void AFloor::BeginPlay()
 	Super::BeginPlay();
 
 	BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AFloor::OnBoxOverlap);
+	BoxComponent-> OnComponentEndOverlap.AddDynamic(this, &AFloor::OnBoxEndOverlap);
 
 	GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &AFloor::spawnEnemyAtArrows, 0.5f, false);
 	
@@ -80,6 +81,7 @@ void AFloor::spawnEnemyAtArrows()
 	{
 		
 		int randomIndex = FMath::RandRange(0, EnemyRefs.Num() - 1);
+		int randomspawn =FMath::RandRange(1, 3);
 		TSubclassOf<AActor> SelectedEnemyClass = EnemyRefs[randomIndex];
 
 		for (int i = 0; i < SpawnArrows.Num(); i++)
@@ -87,11 +89,11 @@ void AFloor::spawnEnemyAtArrows()
 			FVector SpawnLocation = SpawnArrows[i]->GetComponentLocation();
 			FRotator SpawnRotation = SpawnArrows[i]->GetComponentRotation();
 
-			GetWorld()->SpawnActor<AActor>(
-				SelectedEnemyClass,
-				SpawnLocation,
-				SpawnRotation
-			);
+			for (int j=0; j<randomspawn; j++)
+			{
+				
+			GetWorld()->SpawnActor<AActor>(	SelectedEnemyClass,SpawnLocation,SpawnRotation);
+			}
 		}
 	}
 }

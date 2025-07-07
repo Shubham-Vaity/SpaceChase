@@ -42,7 +42,7 @@ void ASpace_gameMode::BeginPlay()
     }
 
     // Spawn 10 random floors
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 8; i++)
     {
         TSubclassOf<AFloor> RandomFloorClass = GetRandomFloor();
         if (RandomFloorClass)
@@ -61,12 +61,22 @@ void ASpace_gameMode::UpdateArrowLocation(AFloor* SpawnedFloor)
     }
 }
 
+
 TSubclassOf<AFloor> ASpace_gameMode::GetRandomFloor()
 {
     if (FloorTypes.Num() == 0) return nullptr;
 
-    int32 Index = FMath::RandRange(0, FloorTypes.Num() - 1);
-    return FloorTypes[Index];
+    int32 NewIndex;
+    
+    // Keep generating until it's different from the previous one
+    do
+    {
+        NewIndex = FMath::RandRange(0, FloorTypes.Num() - 1);
+    }
+    while (FloorTypes.Num() > 1 && NewIndex == LastFloorIndex);
+
+    LastFloorIndex = NewIndex;
+    return FloorTypes[NewIndex];
 }
 
 void ASpace_gameMode::SpawnNextFloor()

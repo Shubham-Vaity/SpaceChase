@@ -31,5 +31,6 @@ private:
     FVector ArrowLocation;
     FRotator SpawnRotation = FRotator::ZeroRotator;
 
+    int32 LastFloorIndex = -1;
     void UpdateArrowLocation(AFloor* SpawnedFloor);
 };
