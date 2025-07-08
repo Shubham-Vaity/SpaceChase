@@ -40,7 +40,7 @@ void ABossType1::BeginPlay()
 	PlayerRef = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
 
 
-	GetWorld()->GetTimerManager().SetTimer(BossSpeedCheckTimer, this, &ABossType1::UpdateBossSpeed, 0.05f, true);
+	GetWorld()->GetTimerManager().SetTimer(BossSpeedCheckTimer, this, &ABossType1::UpdateBossSpeed, 0.01f, true);
 
 	GetWorld()->GetTimerManager().SetTimer(ProximityCheckTimer, this, &ABossType1::CheckPlayerDistance, 0.2f, true);
 	
@@ -161,56 +161,41 @@ void ABossType1::StopBulletBarrage()
 	// Resume movement to next arrow after firing
 	MoveToNextArrow();
 }
-
 void ABossType1::StartSpinAttack()
 {
-	if (!bCanDoSpinAttack || !PlayerRef) return;
+	if (!bCanDoSpinAttack || !PlayerRef || bSpinAttackInProgress) return;
 
+	bSpinAttackInProgress = true;
 	bIsSpinning = true;
-
 	bCanDoSpinAttack = false;
 	bUpdateBossSpeed = false;
+	GetWorld()->GetTimerManager().ClearAllTimersForObject(this); // Clear all other logic
 
 	OriginalBossRotation = BossMesh->GetComponentRotation();
-	// Start spinning mesh (e.g. 720 degrees/sec)
-	SpinRotationRate = FRotator(0.f, 720.f, 0.f);
+	SpinStartPosition = GetActorLocation();
 
+	
+	// Spin rate
+	SpinRotationRate = FRotator(0.f,  1440.f, 0.f);
+
+	// Start spinning movement tick
 	GetWorld()->GetTimerManager().SetTimer(MeshMoveTimer, this, &ABossType1::PerformSpinAttack, MeshMoveInterval, true);
 
-	// Set dash direction toward player
+	// Start 5-second duration timer
+	GetWorld()->GetTimerManager().SetTimer(SpinDurationTimer, this, &ABossType1::FinishSpinAttack, 5.0f, false);
+
+	// Initial dash toward player
 	SpinTargetLocation = PlayerRef->GetActorLocation();
-
-	// Optionally apply a strong dash velocity
-	ProjectileMovement->Velocity = (SpinTargetLocation - GetActorLocation()).GetSafeNormal() * 7000.f;
-
-	// Cooldown setup
-	GetWorld()->GetTimerManager().SetTimer(SpinAttackCooldownTimer, this, &ABossType1::ResetSpinAttack, 10.0f, false);
+	ProjectileMovement->Velocity = (SpinTargetLocation - GetActorLocation()).GetSafeNormal() * SpinDashSpeed;
 }
-
-
 void ABossType1::PerformSpinAttack()
 {
 	if (!bIsSpinning || !BossMesh) return;
 
-	// Spin mesh
 	FRotator NewRotation = BossMesh->GetComponentRotation() + (SpinRotationRate * MeshMoveInterval);
 	BossMesh->SetWorldRotation(NewRotation);
-
-	// Check if we've reached or passed player
-	float DistanceToTarget = FVector::DistXY(GetActorLocation(), SpinTargetLocation);
-	if (DistanceToTarget < 200.f)
-	{
-		bIsSpinning = false;
-		GetWorld()->GetTimerManager().ClearTimer(MeshMoveTimer);
-
-		// Slow/stop forward movement
-		ProjectileMovement->Velocity = FVector::ZeroVector;
-
-		// Set return position in front of player
-		ReturnLocation = PlayerRef->GetActorLocation() + FVector(500.f, 0.f, 0.f); // 500 units in front
-		GetWorld()->GetTimerManager().SetTimer(ReturnToFrontTimer, this, &ABossType1::ReturnInFrontOfPlayer, 1.f, false);
-	}
 }
+
 
 void ABossType1::ReturnInFrontOfPlayer()
 {
@@ -231,20 +216,44 @@ void ABossType1::ReturnToFrontTick()
 {
 	if (!PlayerRef || !bIsReturningToPlayer) return;
 
-	FVector Direction = (ReturnLocation - GetActorLocation()).GetSafeNormal();
+	FVector Direction = (SpinStartPosition - GetActorLocation()).GetSafeNormal();
 	if (!Direction.IsNearlyZero())
 	{
 		ProjectileMovement->Velocity = Direction * ReturnMoveSpeed;
 	}
 
-	float Distance = FVector::DistXY(GetActorLocation(), ReturnLocation);
+	float Distance = FVector::DistXY(GetActorLocation(), SpinStartPosition);
 	if (Distance < 100.f)
 	{
 		bIsReturningToPlayer = false;
 		ProjectileMovement->Velocity = FVector::ZeroVector;
 
+		// Restore original rotation
 		BossMesh->SetWorldRotation(OriginalBossRotation);
 		GetWorld()->GetTimerManager().ClearTimer(ReturnToFrontTickTimer);
 
+		// Re-enable all logic
+		bCanDoSpinAttack = true;
+		bUpdateBossSpeed = true;
+		bSpinAttackInProgress = false;
+
+		// Restart timers
+		GetWorld()->GetTimerManager().SetTimer(BossSpeedCheckTimer, this, &ABossType1::UpdateBossSpeed, 0.05f, true);
+		GetWorld()->GetTimerManager().SetTimer(SomePhaseTimer, this, &ABossType1::StartBulletBarrage, 5.f, true);
+		GetWorld()->GetTimerManager().SetTimer(SpinAttackCooldownTimer, this, &ABossType1::StartSpinAttack, 10.f, true);
 	}
+}
+
+
+void ABossType1::FinishSpinAttack()
+{
+	bIsSpinning = false;
+	GetWorld()->GetTimerManager().ClearTimer(MeshMoveTimer);
+
+	// Stop dash movement
+	ProjectileMovement->Velocity = FVector::ZeroVector;
+
+	// Start returning to the original spin start position
+	bIsReturningToPlayer = true;
+	GetWorld()->GetTimerManager().SetTimer(ReturnToFrontTickTimer, this, &ABossType1::ReturnToFrontTick, 0.02f, true);
 }

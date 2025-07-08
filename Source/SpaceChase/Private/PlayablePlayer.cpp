@@ -235,49 +235,47 @@ void APlayablePlayer::UpdateStamina()
 void APlayablePlayer::FireAtMouse()
 {
     APlayerController* PC = Cast<APlayerController>(GetController());
-    if (!PC || !Bullet1) return;
+    if (!PC || !Bullet1 || !GetMesh()) return;
 
-    // Get mouse position in screen space
+    // Get mouse position
     float MouseX, MouseY;
-    if (PC->GetMousePosition(MouseX, MouseY))
+    if (!PC->GetMousePosition(MouseX, MouseY)) return;
+
+    FVector WorldLocation, WorldDirection;
+    if (!PC->DeprojectScreenPositionToWorld(MouseX, MouseY, WorldLocation, WorldDirection)) return;
+
+    // Get the hit point or far end
+    FVector End = WorldLocation + (WorldDirection * 20000.f);
+    FHitResult HitResult;
+    FCollisionQueryParams Params;
+    Params.AddIgnoredActor(this);
+
+    bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, WorldLocation, End, ECC_Visibility, Params);
+    FVector TargetPoint = bHit ? HitResult.Location : End;
+
+    // Socket names
+    FName SocketLeft = FName("Muzzle_L");
+    FName SocketRight = FName("Muzzle_R");
+
+    TArray<FName> SocketsToFireFrom = { SocketLeft, SocketRight };
+
+    for (FName SocketName : SocketsToFireFrom)
     {
-        // De-project mouse position to world
-        FVector WorldLocation;
-        FVector WorldDirection;
-
-        if (PC->DeprojectScreenPositionToWorld(MouseX, MouseY, WorldLocation, WorldDirection))
+        // Check socket exists
+        if (GetMesh()->DoesSocketExist(SocketName))
         {
-            FVector Start = FirePoint->GetComponentLocation(); // Start from arrow
-            FVector End = Start + (WorldDirection * 20000.f);  // Long line in that direction
+            FVector MuzzleLocation = GetMesh()->GetSocketLocation(SocketName);
+            FVector Direction = (TargetPoint - MuzzleLocation).GetSafeNormal();
 
-            // Do a line trace (optional)
-            FHitResult HitResult;
-            FCollisionQueryParams Params;
-            Params.AddIgnoredActor(this); // Don't hit self
-
-            bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, Params);
-
-            // Draw debug line
-          //  DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 2.f, 0, 5.f);
-
-            FVector TargetPoint = bHit ? HitResult.Location : End;
-
-            // Calculate direction
-            FVector Direction = (TargetPoint - Start).GetSafeNormal();
-
-            // Spawn the bullet
             FActorSpawnParameters SpawnParams;
             SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-            ABullet* Bullet = GetWorld()->SpawnActor<ABullet>(Bullet1, Start, Direction.Rotation(), SpawnParams);
+            ABullet* Bullet = GetWorld()->SpawnActor<ABullet>(Bullet1, MuzzleLocation, Direction.Rotation(), SpawnParams);
 
             if (Bullet)
             {
                 Bullet->SetActorRotation(Direction.Rotation());
-                // You can also pass a velocity or target point to your bullet if needed
             }
-
-
         }
     }
 }

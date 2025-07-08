@@ -59,6 +59,8 @@ void AFloor::BeginPlay()
 	BoxComponent-> OnComponentEndOverlap.AddDynamic(this, &AFloor::OnBoxEndOverlap);
 
 	GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &AFloor::spawnEnemyAtArrows, 0.5f, false);
+
+
 	
 }
 
@@ -79,24 +81,25 @@ void AFloor::spawnEnemyAtArrows()
 {
 	if (SpawnArrows.Num() > 0 && EnemyRefs.Num() > 0)
 	{
-		
 		int randomIndex = FMath::RandRange(0, EnemyRefs.Num() - 1);
-		int randomspawn =FMath::RandRange(1, 3);
+		int randomspawn = FMath::RandRange(1, 3);
 		TSubclassOf<AActor> SelectedEnemyClass = EnemyRefs[randomIndex];
 
 		for (int i = 0; i < SpawnArrows.Num(); i++)
 		{
+			if (!SpawnArrows[i]) continue; // ✅ null check
+
 			FVector SpawnLocation = SpawnArrows[i]->GetComponentLocation();
 			FRotator SpawnRotation = SpawnArrows[i]->GetComponentRotation();
 
-			for (int j=0; j<randomspawn; j++)
+			for (int j = 0; j < randomspawn; j++)
 			{
-				
-			GetWorld()->SpawnActor<AActor>(	SelectedEnemyClass,SpawnLocation,SpawnRotation);
+				GetWorld()->SpawnActor<AActor>(SelectedEnemyClass, SpawnLocation, SpawnRotation);
 			}
 		}
 	}
 }
+
 
 
 	
@@ -131,6 +134,28 @@ void AFloor::OnBoxEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* O
 	}
 }
 
-	
+TSubclassOf<AFloor> ASpace_gameMode::GetRandomFloor()
+{
+	if (ActiveFloorArray.Num() == 0) return nullptr;
+
+	int32 NewIndex = LastFloorIndex;
+
+	// Ensure new index is not the same as the last one
+	if (ActiveFloorArray.Num() > 1)
+	{
+		while (NewIndex == LastFloorIndex)
+		{
+			NewIndex = FMath::RandRange(0, ActiveFloorArray.Num() - 1);
+		}
+	}
+	else
+	{
+		NewIndex = 0;
+	}
+
+	LastFloorIndex = NewIndex;
+	return ActiveFloorArray[NewIndex];
+}
+
 
 

@@ -37,6 +37,7 @@ protected:
 	void ReturnInFrontOfPlayer();
 	void ResetSpinAttack();
 	void ReturnToFrontTick();
+	void FinishSpinAttack();
 
 
 	FVector StartLoc;
@@ -104,7 +105,7 @@ public:
 	float SprintDistanceBuffer = 3000.f;   // Player within this range => boss speeds up
 	float MaxSafeDistance = 8000.f;        // Beyond this range => boss stops
 	float DefaultBossSpeed = 1000.f;
-	float SprintEscapeSpeed = 10000.f;
+	float SprintEscapeSpeed = 20000.f;
 
 	float BulletFireInterval = 0.2f;
 	float FiringDuration = 2.5f;
@@ -126,5 +127,11 @@ public:
 	bool bIsReturningToPlayer = false;
 
 	UPROPERTY(EditAnywhere, Category="Boss|Return")
-	float ReturnMoveSpeed = 3000.f;
+	float ReturnMoveSpeed = 10000.f;
+
+	FVector SpinStartPosition;
+	
+	FTimerHandle SpinDurationTimer;
+	bool bSpinAttackInProgress = false;
+	float  SpinDashSpeed= 50000.0f;
 };

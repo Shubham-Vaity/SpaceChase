@@ -14,23 +14,86 @@ class SPACECHASE_API ASpace_gameMode : public AGameModeBase
 public:
     ASpace_gameMode();
 
-protected:
     virtual void BeginPlay() override;
 
-public:
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Spawning")
+    void SpawnNextFloor();
+    void UpdateArrowLocation(AFloor* SpawnedFloor);
+    // Randomly chosen array for each biome
+	UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TArray<TSubclassOf<AFloor>> Biome1Array;
+
+	UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TArray<TSubclassOf<AFloor>> Biome2Array;
+
+	UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TArray<TSubclassOf<AFloor>> Biome3Array;
+
+   UFUNCTION(BlueprintCallable)
+    void SetActiveFloorArray();
+
+    UFUNCTION(BlueprintCallable)
+    void OnBossDefeated();
+
+    
+   TSubclassOf<AFloor> GetRandomFloor();
+
+    
+protected:
+    // Floor arrays
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TArray<TSubclassOf<AFloor>> FloorBiome1Array;
+
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TArray<TSubclassOf<AFloor>> FloorBiome2Array;
+
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TArray<TSubclassOf<AFloor>> FloorBiome3Array;
+
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TArray<TSubclassOf<AFloor>> FloorBiome4Array;
+
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TArray<TSubclassOf<AFloor>> FloorBiome5Array;
+
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TArray<TSubclassOf<AFloor>> FloorBiome6Array;
+
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TArray<TSubclassOf<AFloor>> DefaultFloors;
+
+    // Bosses
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TSubclassOf<AActor> Boss1;
+
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TSubclassOf<AActor> Boss2;
+
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    TSubclassOf<AActor> Boss3;
+
+    // Starter
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
     TSubclassOf<AFloor> StarterFloorReff;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Floor Spawning")
-    TArray<TSubclassOf<AFloor>> FloorTypes;
+    // Floor Management
+    int32 LastFloorIndex = -1;
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    int32 FloorCounter = 0;
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    int32 CurrentBiome = 1;
 
-    void SpawnNextFloor();
-    TSubclassOf<AFloor> GetRandomFloor();
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    bool bBossAlive = false;
+    bool bBiomeCompleted = false;
 
-private:
+    UPROPERTY(EditAnywhere,BlueprintreadWrite)
+    int32 MaxFloorsPerBiome = 20;
+
     FVector ArrowLocation;
     FRotator SpawnRotation = FRotator::ZeroRotator;
 
-    int32 LastFloorIndex = -1;
-    void UpdateArrowLocation(AFloor* SpawnedFloor);
+    TArray<TSubclassOf<AFloor>> ActiveFloorArray;
+    
+  
+    void TrySpawnBoss();
 };
