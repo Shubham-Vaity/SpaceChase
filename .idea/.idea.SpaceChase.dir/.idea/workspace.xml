@@ -8,15 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65969fde-468e-4031-a6a2-929c69956152" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/BossType2.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/BossType2.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpaceChase.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpaceChase.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/BossType1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/BossType1.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/Floor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Floor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/PlayablePlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/PlayablePlayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/Space_gameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Space_gameMode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/BossType1.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/BossType1.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/Space_gameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/Space_gameMode.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,6 +188,7 @@
       <workItem from="1751975900150" duration="251000" />
       <workItem from="1751995658287" duration="808000" />
       <workItem from="1752003037553" duration="4268000" />
+      <workItem from="1752042445104" duration="967000" />
     </task>
     <servers />
   </component>
