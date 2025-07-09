@@ -166,7 +166,7 @@ void ASpace_gameMode::TrySpawnBoss()
 {
     if (bBossAlive) return;
 
-    TSubclassOf<AActor> BossToSpawn = nullptr;
+  
 
     switch (CurrentBiome)
     {
@@ -178,7 +178,7 @@ void ASpace_gameMode::TrySpawnBoss()
 
     if (BossToSpawn)
     {
-        FVector BossSpawnLoc = ArrowLocation + FVector(300.f, 0.f, 200.f);
+        FVector BossSpawnLoc = ArrowLocation + FVector(8000.f, 800.f, 0.f);
         GetWorld()->SpawnActor<AActor>(BossToSpawn, BossSpawnLoc, SpawnRotation);
         bBossAlive = true;
     }

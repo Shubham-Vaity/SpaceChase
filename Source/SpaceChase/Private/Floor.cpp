@@ -56,13 +56,12 @@ void AFloor::BeginPlay()
 	Super::BeginPlay();
 
 	BoxComponent->OnComponentBeginOverlap.AddDynamic(this, &AFloor::OnBoxOverlap);
-	BoxComponent-> OnComponentEndOverlap.AddDynamic(this, &AFloor::OnBoxEndOverlap);
+	BoxComponent->OnComponentEndOverlap.AddDynamic(this, &AFloor::OnBoxEndOverlap);
 
-	GetWorldTimerManager().SetTimer(DelayTimerHandle, this, &AFloor::spawnEnemyAtArrows, 0.5f, false);
-
-
-	
+	// Start checking every 0.5s if player is near
+	GetWorldTimerManager().SetTimer(EnemySpawnCheckTimer, this, &AFloor::spawnEnemyAtArrows, 0.5f, true);
 }
+
 
 // Called every frame
 void AFloor::Tick(float DeltaTime)
@@ -77,28 +76,40 @@ FVector AFloor::ArrowLocation()
 
 	return FrountArrow->GetComponentLocation();
 }
+
 void AFloor::spawnEnemyAtArrows()
 {
-	if (SpawnArrows.Num() > 0 && EnemyRefs.Num() > 0)
+	if (bEnemiesSpawned || SpawnArrows.Num() == 0 || EnemyRefs.Num() == 0) return;
+
+	AActor* Player = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+	if (!Player) return;
+
+	float DistanceToPlayer = FVector::Dist(Player->GetActorLocation(), GetActorLocation());
+	if (DistanceToPlayer > 5000.f) return;  // Only spawn if close enough
+
+	// Spawn logic
+	int randomIndex = FMath::RandRange(0, EnemyRefs.Num() - 1);
+	int randomspawn = FMath::RandRange(1, 3);
+	TSubclassOf<AActor> SelectedEnemyClass = EnemyRefs[randomIndex];
+
+	for (int i = 0; i < SpawnArrows.Num(); i++)
 	{
-		int randomIndex = FMath::RandRange(0, EnemyRefs.Num() - 1);
-		int randomspawn = FMath::RandRange(1, 3);
-		TSubclassOf<AActor> SelectedEnemyClass = EnemyRefs[randomIndex];
+		if (!SpawnArrows[i]) continue;
 
-		for (int i = 0; i < SpawnArrows.Num(); i++)
+		FVector SpawnLocation = SpawnArrows[i]->GetComponentLocation();
+		FRotator SpawnRotation = SpawnArrows[i]->GetComponentRotation();
+
+		for (int j = 0; j < randomspawn; j++)
 		{
-			if (!SpawnArrows[i]) continue; // ✅ null check
-
-			FVector SpawnLocation = SpawnArrows[i]->GetComponentLocation();
-			FRotator SpawnRotation = SpawnArrows[i]->GetComponentRotation();
-
-			for (int j = 0; j < randomspawn; j++)
-			{
-				GetWorld()->SpawnActor<AActor>(SelectedEnemyClass, SpawnLocation, SpawnRotation);
-			}
+			GetWorld()->SpawnActor<AActor>(SelectedEnemyClass, SpawnLocation, SpawnRotation);
 		}
 	}
+
+	// Stop repeating and mark as done
+	bEnemiesSpawned = true;
+	GetWorldTimerManager().ClearTimer(EnemySpawnCheckTimer);
 }
+
 
 
 

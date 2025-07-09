@@ -92,13 +92,27 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Movement Speed")
 	float CapsuleMoveSpeed = 6.f;
 
+	
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
 	// --- Sprinting ---
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsSprinting;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float SprintSpeed = 1500.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float NormalSpeed = 500.f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Stamina = 100.f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MaxStamina = 100.f;
+	
 	float StaminaDrainRate = 20.f;  // per second
 	float StaminaRecoveryRate = 10.f; // per second
 
@@ -114,11 +128,6 @@ protected:
 	FTimerHandle DelayTimerHandle;
 	
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
 }; 

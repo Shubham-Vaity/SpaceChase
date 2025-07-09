@@ -37,6 +37,8 @@ public:
     
    TSubclassOf<AFloor> GetRandomFloor();
 
+	UPROPERTY(EditAnywhere,BlueprintreadWrite)
+	TSubclassOf<AActor> BossToSpawn = nullptr;
     
 protected:
     // Floor arrays

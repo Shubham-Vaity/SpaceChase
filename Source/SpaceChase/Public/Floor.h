@@ -76,4 +76,11 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<AActor>> EnemyRefs;
+
+
+	// Tracks if enemies have been spawned
+	bool bEnemiesSpawned = false;
+
+	// Timer handle for repeated spawn check
+	FTimerHandle EnemySpawnCheckTimer;
 };

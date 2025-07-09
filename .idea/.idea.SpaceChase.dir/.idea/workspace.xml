@@ -8,7 +8,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65969fde-468e-4031-a6a2-929c69956152" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/TitleScreen/UI/ship/BP_close.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/TitleScreen/UI/ship/BP_ship_screen1.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/TitleScreen/UI/ship/BP_ship_screen2.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/TitleScreen/UI/ship/BP_ship_screen3.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/TitleScreen/UI/ship/New_Piskel__5_.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/TitleScreen/UI/ship/Screen1.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/TitleScreen/UI/ship/screen2.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/TitleScreen/_GENERATED/user/Buttons_low_UpperArm_0_CCC8561E.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpaceChase.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpaceChase.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/TitleScreen/BP_Title_player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/TitleScreen/BP_Title_player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/TitleScreen/TitleScreen.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/TitleScreen/TitleScreen.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/TitleScreen/models/1/BP_coppit.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/TitleScreen/models/1/BP_coppit.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/Floor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Floor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Private/Space_gameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Private/Space_gameMode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/Floor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/Floor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/PlayablePlayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/PlayablePlayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SpaceChase/Public/Space_gameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SpaceChase/Public/Space_gameMode.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +40,12 @@
     <setting file="file://$PROJECT_DIR$/Source/SpaceChase/Private/EnemyType1.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/SpaceChase/Private/EnemyType2.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/SpaceChase/Private/Floor.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/SpaceChase/Private/PlayablePlayer.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/SpaceChase/Public/EnemyType1.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/SpaceChase/Public/EnemyType2.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/SpaceChase/Public/Floor.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/SpaceChase/Public/PlayablePlayer.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/SpaceChase/Public/Space_gameMode.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="JsbtTreeLayoutManager">
     <layout place="tools.popupGrunt">
@@ -188,7 +207,11 @@
       <workItem from="1751975900150" duration="251000" />
       <workItem from="1751995658287" duration="808000" />
       <workItem from="1752003037553" duration="4268000" />
-      <workItem from="1752042445104" duration="967000" />
+      <workItem from="1752042445104" duration="2990000" />
+      <workItem from="1752047517443" duration="1305000" />
+      <workItem from="1752052116127" duration="8924000" />
+      <workItem from="1752075783650" duration="2120000" />
+      <workItem from="1752093964279" duration="129000" />
     </task>
     <servers />
   </component>
